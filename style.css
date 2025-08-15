@@ -1,0 +1,228 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+}
+
+.container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+}
+
+/* Header styles */
+header h1 {
+    font-size: 2.5rem;
+    color: #4a5568;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Game info section */
+.game-info {
+    margin-bottom: 25px;
+}
+
+.current-player {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #2d3748;
+    margin-bottom: 10px;
+}
+
+.game-status {
+    font-size: 1.1rem;
+    font-weight: bold;
+    min-height: 24px;
+}
+
+.game-status.winner {
+    color: #38a169;
+    animation: celebration 0.5s ease-in-out;
+}
+
+.game-status.draw {
+    color: #e53e3e;
+}
+
+/* Game board styles */
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 5px;
+    background-color: #4a5568;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 20px auto;
+    max-width: 300px;
+    aspect-ratio: 1;
+}
+
+.cell {
+    background-color: #f7fafc;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+    min-height: 80px;
+}
+
+.cell:hover {
+    background-color: #e2e8f0;
+    transform: scale(1.05);
+}
+
+.cell.occupied {
+    cursor: not-allowed;
+}
+
+.cell.occupied:hover {
+    background-color: #f7fafc;
+    transform: none;
+}
+
+.cell.x {
+    color: #e53e3e;
+    animation: placeMove 0.3s ease-in-out;
+}
+
+.cell.o {
+    color: #3182ce;
+    animation: placeMove 0.3s ease-in-out;
+}
+
+.cell.winning {
+    background-color: #c6f6d5;
+    animation: winningCell 0.6s ease-in-out infinite alternate;
+}
+
+/* Game controls */
+.game-controls {
+    margin-top: 25px;
+}
+
+.reset-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.reset-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.reset-btn:active {
+    transform: translateY(0);
+}
+
+/* Footer styles */
+footer {
+    margin-top: 20px;
+    color: #718096;
+    font-size: 0.9rem;
+}
+
+/* Animations */
+@keyframes placeMove {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes celebration {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes winningCell {
+    0% {
+        background-color: #c6f6d5;
+    }
+    100% {
+        background-color: #9ae6b4;
+    }
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+        width: 95%;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .game-board {
+        max-width: 250px;
+    }
+    
+    .cell {
+        font-size: 2rem;
+        min-height: 70px;
+    }
+    
+    .current-player {
+        font-size: 1rem;
+    }
+    
+    .game-status {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 320px) {
+    .game-board {
+        max-width: 220px;
+    }
+    
+    .cell {
+        font-size: 1.8rem;
+        min-height: 60px;
+    }
+}
